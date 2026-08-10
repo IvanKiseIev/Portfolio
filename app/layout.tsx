@@ -1,6 +1,8 @@
+import LanguageSwitch from "./components/LanguageSwitch";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-neutral-900 text-neutral-100 antialiased">
-        {children}
-      </body>
+<body className="bg-neutral-900 text-neutral-100 antialiased">
+  <LanguageProvider>
+    <LanguageSwitch />
+    {children}
+  </LanguageProvider>
+</body>
     </html>
   );
 }
