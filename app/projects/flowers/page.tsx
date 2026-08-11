@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Slider from "@/app/components/Slider";
 import { useState } from "react";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const photos = [
   { src: "/projects/flowers/5.webp", alt: "Flower shop mobile 1" },
@@ -11,8 +12,81 @@ const photos = [
   { src: "/projects/flowers/2.webp", alt: "Flower shop mobile 2" },
 ];
 
+const translations = {
+  en: {
+    back: "Back",
+    title: "Online Flower Stores",
+    subtitle: "Commercial websites for online orders and payments",
+    tech: "Tilda · payment integration · notifications · full launch",
+
+    aboutTitle: "About the project",
+    about1:
+      "These online stores were developed for local flower shops. Clients came through recommendations and personal contacts.",
+    about2:
+      "The design was created from scratch based on the client's requirements, with adjustments made throughout the development process.",
+    about3:
+      "Projects were typically launched within 3–4 weeks, from receiving the requirements to the first paid orders.",
+
+    featuresTitle: "Implemented features",
+    features: [
+      "Product catalog and shopping cart",
+      "Online payments",
+      "Order notifications via Telegram and email",
+      "Delivery cost calculation by address",
+      "Full mobile optimization",
+    ],
+
+    visualTitle: "Project visuals",
+
+    roleTitle: "My role",
+    role1:
+      "Planning, custom design, building websites on Tilda, payment setup, order logic, and project launch.",
+    role2:
+      "After launch, I either provided ongoing support or handed the project over with explanations for independent management.",
+
+    openSite: "Open website example →",
+  },
+
+  ru: {
+    back: "Назад",
+    title: "Интернет-магазины цветов",
+    subtitle: "Коммерческие сайты для приёма онлайн-заказов и оплаты",
+    tech: "Tilda · эквайринг · уведомления · запуск под ключ",
+
+    aboutTitle: "О проекте",
+    about1:
+      "Интернет-магазины разрабатывались для локальных цветочных магазинов. Клиенты приходили по рекомендациям и личным контактам.",
+    about2:
+      "Дизайн создавался с нуля на основе пожеланий заказчика. Правки вносились по ходу разработки.",
+    about3:
+      "Проекты запускались в среднем за 3–4 недели — от получения ТЗ до первых оплаченных заказов.",
+
+    featuresTitle: "Реализованный функционал",
+    features: [
+      "Каталог товаров и корзина",
+      "Онлайн-оплата (эквайринг)",
+      "Уведомления о заказах в Telegram и на почту",
+      "Расчёт доставки по адресу",
+      "Полная адаптация под мобильные устройства",
+    ],
+
+    visualTitle: "Визуал проекта",
+
+    roleTitle: "Моя роль",
+    role1:
+      "Проектирование, дизайн с нуля, сборка сайтов на Tilda, настройка оплаты, логики заказов и запуск проектов.",
+    role2:
+      "После запуска — сопровождение сайта или передача проекта с объяснением всех нюансов для самостоятельной работы.",
+
+    openSite: "Открыть пример сайта →",
+  },
+};
+
 export default function ProjectPage() {
   const [slideIndex, setSlideIndex] = useState(0);
+
+  const { language } = useLanguage();
+  const text = translations[language];
 
   return (
     <main className="min-h-screen px-4 pt-0 pb-20">
@@ -44,7 +118,7 @@ export default function ProjectPage() {
         >
           <span className="inline-flex items-center gap-2">
             <span className="text-lg">←</span>
-            Назад
+            {text.back}
           </span>
         </Link>
       </div>
@@ -55,59 +129,54 @@ export default function ProjectPage() {
         {/* Hero */}
         <section className="space-y-2">
           <h1 className="text-4xl font-semibold">
-            Интернет-магазины цветов
+            {text.title}
           </h1>
 
           <p className="text-neutral-300 text-lg max-w-2xl">
-            Коммерческие сайты для приёма онлайн-заказов и оплаты
+            {text.subtitle}
           </p>
 
           <p className="text-neutral-400">
-            Tilda · эквайринг · уведомления · запуск под ключ
+            {text.tech}
           </p>
         </section>
 
         {/* О проекте */}
         <section className="space-y-2 max-w-3xl">
           <h2 className="text-2xl font-semibold">
-            О проекте
+            {text.aboutTitle}
           </h2>
 
           <p className="text-neutral-300">
-            Интернет-магазины разрабатывались для локальных цветочных магазинов.
-            Клиенты приходили по рекомендациям и личным контактам.
+            {text.about1}
           </p>
 
           <p className="text-neutral-300">
-            Дизайн создавался с нуля на основе пожеланий заказчика.
-            Правки вносились по ходу разработки.
+            {text.about2}
           </p>
 
           <p className="text-neutral-300">
-            Проекты запускались в среднем за 3–4 недели -
-            от получения ТЗ до первых оплаченных заказов.
+            {text.about3}
           </p>
         </section>
 
         {/* Функционал */}
         <section className="space-y-2">
           <h2 className="text-2xl font-semibold">
-            Реализованный функционал
+            {text.featuresTitle}
           </h2>
 
-          <ul className="text-neutral-300 list-disc list-inside space-y-1">
-            <li>Каталог товаров и корзина</li>
-            <li>Онлайн-оплата (эквайринг)</li>
-            <li>Уведомления о заказах в Telegram и на почту</li>
-            <li>Расчёт доставки по адресу</li>
-            <li>Полная адаптация под мобильные устройства</li>
-          </ul>
+<ul className="text-neutral-300 list-disc list-inside space-y-1">
+  {text.features.map((feature) => (
+    <li key={feature}>{feature}</li>
+  ))}
+</ul>
         </section>
 
         {/* Визуал */}
         <section className="space-y-2">
           <h2 className="text-2xl font-semibold">
-            Визуал проекта
+            {text.visualTitle}
           </h2>
 
           <Slider
@@ -120,17 +189,15 @@ export default function ProjectPage() {
         {/* Роль */}
         <section className="space-y-2 max-w-3xl">
           <h2 className="text-2xl font-semibold">
-            Моя роль
+            {text.roleTitle}
           </h2>
 
           <p className="text-neutral-300">
-            Проектирование, дизайн с нуля, сборка сайтов на Tilda,
-            настройка оплаты, логики заказов и запуск проектов.
+            {text.role1}
           </p>
 
           <p className="text-neutral-300">
-            После запуска - сопровождение сайта или передача проекта
-            с объяснением всех нюансов для самостоятельной работы.
+            {text.role2}
           </p>
           {/* Ссылка на сайт */}
           <Link
@@ -138,7 +205,7 @@ export default function ProjectPage() {
             target="_blank"
             className="inline-block text-sm text-neutral-400 hover:text-neutral-200 transition"
             >
-            Открыть пример сайта →
+            {text.openSite}
           </Link>
         </section>
 
@@ -158,7 +225,7 @@ export default function ProjectPage() {
         >
           <span className="inline-flex items-center gap-2">
             <span className="text-lg">←</span>
-            Назад
+            {text.back}
           </span>
         </Link>
       </div>
