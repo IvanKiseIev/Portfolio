@@ -12,38 +12,73 @@ import { useLanguage } from "@/app/context/LanguageContext";
 import Link from "next/link";
 import ProjectCard from "@/app/components/ProjectCard";
 
-const projects: Project[] = [
-  {
-    title: "Кодовые сайты и лендинги",
-    description: "Next.js, адаптивная верстка, Vercel",
-    stack: "Кодовый сайт молодёжного движения Dvizh-Ufa",
-    href: "/projects/dvizh-ufa",
-    media: [
-      { type: "image", src: "/projects/dvizh-ufa/desktop-1.jpg" },
-      { type: "image", src: "/projects/dvizh-ufa/desktop-2.jpg" },
-    ],
-  },
-  {
-    title: "Лендинги и витрины",
-    description: "Tilda, эквайринг, сопровождение",
-    stack: "Коммерческие сайт для приёма заказов",
-    href: "/projects/flowers",
-    media: [
-      { type: "image", src: "/projects/flowers/5.webp" },
-      { type: "image", src: "/projects/flowers/1.webp" },
-    ],
-  },
-  {
-    title: "Технические задачи",
-    description: "Excel, правки, консультации",
-    stack: "Помощь с сайтами и автоматизация",
-    href: "/projects/tech",
-    media: [
-      { type: "image", src: "/projects/tech/1.jpg" },
-      { type: "image", src: "/projects/tech/2.webp" },
-    ],
-  },
-];
+const projectsByLanguage: Record<"en" | "ru", Project[]> = {
+  en: [
+    {
+      title: "Custom Websites and Landing Pages",
+      description: "Next.js, responsive layout, Vercel",
+      stack: "Custom website for the Dvizh-Ufa youth movement",
+      href: "/projects/dvizh-ufa",
+      media: [
+        { type: "image", src: "/projects/dvizh-ufa/desktop-1.jpg" },
+        { type: "image", src: "/projects/dvizh-ufa/desktop-2.jpg" },
+      ],
+    },
+    {
+      title: "Landing Pages and Storefronts",
+      description: "Tilda, payments, ongoing support",
+      stack: "Commercial websites for accepting online orders",
+      href: "/projects/flowers",
+      media: [
+        { type: "image", src: "/projects/flowers/5.webp" },
+        { type: "image", src: "/projects/flowers/1.webp" },
+      ],
+    },
+    {
+      title: "Technical Tasks",
+      description: "Excel, fixes, consultations",
+      stack: "Website support and automation",
+      href: "/projects/tech",
+      media: [
+        { type: "image", src: "/projects/tech/1.jpg" },
+        { type: "image", src: "/projects/tech/2.webp" },
+      ],
+    },
+  ],
+
+  ru: [
+    {
+      title: "Кодовые сайты и лендинги",
+      description: "Next.js, адаптивная верстка, Vercel",
+      stack: "Кодовый сайт молодёжного движения Dvizh-Ufa",
+      href: "/projects/dvizh-ufa",
+      media: [
+        { type: "image", src: "/projects/dvizh-ufa/desktop-1.jpg" },
+        { type: "image", src: "/projects/dvizh-ufa/desktop-2.jpg" },
+      ],
+    },
+    {
+      title: "Лендинги и витрины",
+      description: "Tilda, эквайринг, сопровождение",
+      stack: "Коммерческие сайты для приёма заказов",
+      href: "/projects/flowers",
+      media: [
+        { type: "image", src: "/projects/flowers/5.webp" },
+        { type: "image", src: "/projects/flowers/1.webp" },
+      ],
+    },
+    {
+      title: "Технические задачи",
+      description: "Excel, правки, консультации",
+      stack: "Помощь с сайтами и автоматизация",
+      href: "/projects/tech",
+      media: [
+        { type: "image", src: "/projects/tech/1.jpg" },
+        { type: "image", src: "/projects/tech/2.webp" },
+      ],
+    },
+  ],
+};
 
 const translations = {
   en: {
@@ -66,6 +101,7 @@ const translations = {
 export default function Home() {
   const { language } = useLanguage();
   const text = translations[language];
+  const projects = projectsByLanguage[language];
 
   return (
     <main className="min-h-screen px-4 py-12">
