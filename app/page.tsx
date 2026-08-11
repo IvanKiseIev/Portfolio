@@ -84,7 +84,7 @@ const translations = {
   en: {
     title: "Ivan Kiselev - Web Development",
     description:
-      "I help with websites, code, and technical tasks. Portfolios, landing pages, improvements, and consultations.",
+      "React / Next.js / TypeScript",
     projectsTitle: "Projects:",
     contactsTitle: "Contacts",
   },
