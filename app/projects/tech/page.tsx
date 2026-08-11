@@ -2,8 +2,87 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage } from "@/app/context/LanguageContext";
+
+const translations = {
+  en: {
+    back: "Back",
+
+    title: "Technical Tasks and Project Support",
+    intro:
+      "I take on tasks beyond web development: fixes, consultations, design, automation, and project launches.",
+
+    mainText:
+      "This format is suitable if you need someone who can understand the task, propose a solution, and bring it to completion without relying on a template-based approach.",
+
+    tasks: [
+      "Website fixes and improvements",
+      "Project setup and launch: domains, hosting, deployment",
+      "Code assistance and technical consultations",
+      "Automation, Excel, and office tools",
+      "Routine and repetitive tasks",
+    ],
+
+    designTitle: "Design and Visuals",
+    designText1:
+      "I also work with graphic design: logos, posters, and visual materials. I created design work for the Dvizh-Ufa youth organization.",
+    designText2:
+      "I work in Adobe Photoshop, build designs from scratch based on requirements, make revisions during the process, and refine the final result.",
+
+    workTitle: "Work Format",
+    workFormats: [
+      "one-time assistance or consultation",
+      "a series of fixes and improvements",
+      "ongoing project support",
+      "explanations for independent work",
+    ],
+
+    finalText:
+      "I take on both simple technical tasks and more creative solutions.",
+  },
+
+  ru: {
+    back: "Назад",
+
+    title: "Технические задачи и помощь с проектами",
+    intro:
+      "Берусь за задачи, которые выходят за рамки веб-разработки: правки, консультации, дизайн, автоматизация и запуск проектов.",
+
+    mainText:
+      "Этот формат подойдёт, если нужен человек, который разберётся в задаче, предложит решение и доведёт её до результата — без шаблонного подхода.",
+
+    tasks: [
+      "Правки и доработки сайтов",
+      "Запуск и настройка проектов (домен, хостинг, деплой)",
+      "Помощь с кодом и технические консультации",
+      "Автоматизация, Excel и офисные инструменты",
+      "Рутинные и монотонные задачи",
+    ],
+
+    designTitle: "Дизайн и визуал",
+    designText1:
+      "Занимаюсь графическим дизайном: логотипы, афиши и визуальные материалы. Делал дизайн для молодёжной организации Dvizh-Ufa.",
+    designText2:
+      "Работаю в Adobe Photoshop, собираю дизайн с нуля по пожеланиям, вношу правки в процессе и довожу результат до аккуратного вида.",
+
+    workTitle: "Формат работы",
+    workFormats: [
+      "разовая помощь или консультация",
+      "серия правок и доработок",
+      "сопровождение проекта",
+      "объяснение нюансов для самостоятельной работы",
+    ],
+
+    finalText:
+      "Берусь как за простые задачи, так и за более творческие решения.",
+  },
+};
 
 export default function TechTasksPage() {
+
+  const { language } = useLanguage();
+  const text = translations[language];
+
   return (
     <main className="min-h-screen px-4 pt-0 pb-20">
       {/* зона клика «назад» слева для ПК */}
@@ -34,7 +113,7 @@ export default function TechTasksPage() {
         >
           <span className="inline-flex items-center gap-2">
             <span className="text-lg">←</span>
-            Назад
+            {text.back}
           </span>
         </Link>
       </div>
@@ -45,40 +124,36 @@ export default function TechTasksPage() {
         {/* Hero */}
         <section className="space-y-2">
           <h1 className="text-4xl font-semibold">
-            Технические задачи и помощь с проектами
+            {text.title}
           </h1>
 
           <p className="text-neutral-300 text-lg max-w-3xl">
-            Берусь за задачи, которые выходят за рамки веб-разработки:
-            правки, консультации, дизайн, автоматизация и запуск проектов.
+            {text.intro}
           </p>
         </section>
 
         {/* Основной текст */}
         <section className="space-y-4 max-w-3xl text-neutral-300">
           <p>
-            Этот формат подойдёт, если нужен человек, который разберётся в задаче,
-            предложит решение и доведёт её до результата — без шаблонного подхода.
+            {text.mainText}
           </p>
 
-          <ul className="list-disc list-inside space-y-1">
-            <li>Правки и доработки сайтов</li>
-            <li>Запуск и настройка проектов (домен, хостинг, деплой)</li>
-            <li>Помощь с кодом и технические консультации</li>
-            <li>Автоматизация, Excel и офисные инструменты</li>
-            <li>Рутинные и монотонные задачи</li>
-          </ul>
+<ul className="list-disc list-inside space-y-1">
+  {text.tasks.map((task) => (
+    <li key={task}>{task}</li>
+  ))}
+</ul>
         </section>
 
         {/* Дизайн */}
         <section className="space-y-3 max-w-3xl">
           <h2 className="text-2xl font-semibold">
-            Дизайн и визуал
+            {text.designTitle}
           </h2>
 
           <p className="text-neutral-300">
-            Занимаюсь графическим дизайном: логотипы, афиши и визуальные материалы.
-            Делал дизайн для молодёжной организации <span className="font-medium">Dvizh-Ufa</span>.
+              {text.designText1}
+ <span className="font-medium">Dvizh-Ufa</span>.
           </p>
 
   {/* фото после Dvizh-Ufa */}
@@ -93,8 +168,7 @@ export default function TechTasksPage() {
   </div>
 
           <p className="text-neutral-300">
-            Работаю в Adobe Photoshop, собираю дизайн с нуля по пожеланиям,
-            вношу правки в процессе и довожу результат до аккуратного вида.
+              {text.designText2}
           </p>
         </section>
 
@@ -112,19 +186,18 @@ export default function TechTasksPage() {
         {/* Формат работы */}
         <section className="space-y-3 max-w-3xl">
           <h2 className="text-2xl font-semibold">
-            Формат работы
+              {text.workTitle}
           </h2>
 
-          <ul className="list-disc list-inside space-y-1 text-neutral-300">
-            <li>разовая помощь или консультация</li>
-            <li>серия правок и доработок</li>
-            <li>сопровождение проекта</li>
-            <li>объяснение нюансов для самостоятельной работы</li>
-          </ul>
+<ul className="list-disc list-inside space-y-1 text-neutral-300">
+  {text.workFormats.map((item) => (
+    <li key={item}>{item}</li>
+  ))}
+</ul>
 
-          <p className="text-neutral-300">
-            Берусь как за простые задачи, так и за более творческие решения.
-          </p>
+<p className="text-neutral-300">
+  {text.finalText}
+</p>
         </section>
       </div>
 
