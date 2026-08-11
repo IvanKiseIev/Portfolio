@@ -4,6 +4,7 @@ import Link from "next/link";
 import Slider from "@/app/components/Slider";
 import { useState } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const desktopPhotos = [
   { src: "/projects/dvizh-ufa/desktop-1.jpg", alt: "Desktop 1" },
@@ -21,8 +22,72 @@ const mobilePhotos = [
   { src: "/projects/dvizh-ufa/mobile-5.jpg", alt: "Mobile 5" },
 ];
 
+const translations = {
+  en: {
+    back: "Back",
+    subtitle: "Website for a youth movement and community.",
+    tech: "Next.js · responsive layout · deployed with Vercel",
+    openSite: "Open website example →",
+
+    aboutTitle: "About the project",
+    about1:
+      "Dvizh-Ufa is a youth movement that brings people together around music, events, and group trips. The website was developed from scratch as the main online platform for presenting the community.",
+    about2:
+      "The main goal was to create a fast, clear, and easily scalable website that could grow without the limitations of template-based platforms.",
+
+    featuresTitle: "Implemented features",
+    features: [
+      "Main page with an introduction to the movement",
+      "Separate pages for each event",
+      "Responsive design for mobile and desktop devices",
+      "Optimized page loading",
+      "Structure prepared for adding new sections",
+    ],
+
+    visualTitle: "Project visuals",
+    desktop: "Desktop version:",
+    mobile: "Mobile version:",
+
+    roleTitle: "My role",
+    role:
+      "Website structure planning, interface development, implementation in Next.js, and deployment.",
+  },
+
+  ru: {
+    back: "Назад",
+    subtitle: "Сайт молодёжного движения и сообщества.",
+    tech: "Next.js · адаптивная вёрстка · деплой через Vercel",
+    openSite: "Открыть пример сайта →",
+
+    aboutTitle: "О проекте",
+    about1:
+      "Dvizh-Ufa - молодёжное движение, объединяющее людей вокруг музыки, мероприятий и совместных поездок. Сайт был разработан на коде как основная платформа для представления сообщества в онлайне.",
+    about2:
+      "Основная задача - сделать быстрый, понятный и легко расширяемый сайт, который можно развивать без ограничений шаблонных платформ.",
+
+    featuresTitle: "Реализованный функционал",
+    features: [
+      "Главная страница с описанием движения",
+      "Дочерние страницы под каждое проведённое мероприятие",
+      "Адаптация под мобильные и десктопные устройства",
+      "Оптимизированная загрузка страниц",
+      "Структура, готовая к добавлению новых разделов",
+    ],
+
+    visualTitle: "Визуал проекта",
+    desktop: "ПК-версия:",
+    mobile: "Мобильная версия:",
+
+    roleTitle: "Моя роль",
+    role:
+      "Проектирование структуры сайта, разработка интерфейса и реализация проекта на Next.js с последующим деплоем.",
+  },
+};
+
 export default function ProjectPage() {
   const [slideIndex, setSlideIndex] = useState(0);
+  const { language } = useLanguage();
+  const text = translations[language];
 
   return (
     <main className="min-h-screen px-4 pt-0 pb-20">
@@ -57,7 +122,7 @@ export default function ProjectPage() {
 >
   <span className="block px-4 items-center gap-2">
     <span className="text-lg">← </span>
-    Назад
+    {text.back}
   </span>
 </Link>
   </div>
@@ -77,10 +142,10 @@ export default function ProjectPage() {
   />
   </h1>
           <p className="text-neutral-300 text-lg max-w-2xl">
-            Сайт молодёжного движения и сообщества.
+            {text.subtitle}
           </p>
           <p className="text-neutral-400">
-            Next.js · адаптивная вёрстка · деплой через Vercel
+            {text.tech}
           </p>
         {/* Ссылка на сайт */}
 <Link
@@ -88,7 +153,7 @@ export default function ProjectPage() {
   target="_blank"
   className="inline-block text-sm text-neutral-400 hover:text-neutral-200 transition"
 >
-  Открыть пример сайта →
+  {text.openSite}
 </Link>
         </section>
 
@@ -96,43 +161,38 @@ export default function ProjectPage() {
         {/* About */}
         <section className="space-y-2 max-w-3xl">
           <h2 className="text-2xl font-semibold">
-            О проекте
+            {text.aboutTitle}
           </h2>
           <p className="text-neutral-300">
-            Dvizh-Ufa - молодёжное движение, объединяющее людей вокруг музыки,
-            мероприятий и совместных поездок. Сайт был разработан на коде
-            как основная платформа для представления сообщества в онлайне.
+            {text.about1}
           </p>
           <p className="text-neutral-300">
-            Основная задача - сделать быстрый, понятный и легко расширяемый сайт,
-            который можно развивать без ограничений шаблонных платформ.
+            {text.about2}
           </p>
         </section>
 
         {/* Features */}
         <section className="space-y-2">
           <h2 className="text-2xl font-semibold">
-            Реализованный функционал
+            {text.featuresTitle}
           </h2>
-          <ul className="space-y-0 text-neutral-300 list-disc list-inside">
-            <li>Главная страница с описанием движения</li>
-            <li>Дочерние страницы под каждое проведенное мероприятие</li>
-            <li>Адаптация под мобильные и десктопные устройства</li>
-            <li>Оптимизированная загрузка страниц</li>
-            <li>Структура, готовая к добавлению новых разделов</li>
-          </ul>
+<ul className="space-y-0 text-neutral-300 list-disc list-inside">
+  {text.features.map((feature) => (
+    <li key={feature}>{feature}</li>
+  ))}
+</ul>
         </section>
 
 {/* Visual */}
 <section className="space-y-2">
   <h2 className="text-2xl font-semibold">
-    Визуал проекта
+    {text.visualTitle}
   </h2>
 
   {/* Desktop slider */}
   <div className="space-y-2">
     <p className="text-neutral-400 text-sm">
-      ПК-версия:
+      {text.desktop}
     </p>
 <Slider
   photos={desktopPhotos}
@@ -144,7 +204,7 @@ export default function ProjectPage() {
   {/* Mobile slider */}
   <div className="space-y-2">
     <p className="text-neutral-400 text-sm">
-      Мобильная версия:
+      {text.mobile}
     </p>
 <Slider
   photos={mobilePhotos}
@@ -157,11 +217,10 @@ export default function ProjectPage() {
         {/* Role */}
         <section className="space-y-2 max-w-3xl">
           <h2 className="text-2xl font-semibold">
-            Моя роль
+            {text.roleTitle}
           </h2>
           <p className="text-neutral-300">
-            Проектирование структуры сайта, разработка интерфейса и реализация
-            проекта на Next.js с последующим деплоем.
+            {text.role}
           </p>
           
         {/* Ссылка на сайт */}
@@ -170,7 +229,7 @@ export default function ProjectPage() {
   target="_blank"
   className="inline-block text-sm text-neutral-400 hover:text-neutral-200 transition"
 >
-  Открыть пример сайта →
+  {text.openSite}
 </Link>
         </section>
 
@@ -191,7 +250,7 @@ export default function ProjectPage() {
 >
   <span className="inline-flex items-center gap-2">
     <span className="text-lg">← </span>
-    Назад
+    {text.back}
   </span>
 </Link>
   </div>
