@@ -1,4 +1,3 @@
-import LanguageSwitch from "./components/LanguageSwitch";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,10 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
 <body className="bg-neutral-900 text-neutral-100 antialiased">
-  <LanguageProvider>
-    <LanguageSwitch />
-    {children}
-  </LanguageProvider>
+<LanguageProvider>
+  {children}
+</LanguageProvider>
 </body>
     </html>
   );

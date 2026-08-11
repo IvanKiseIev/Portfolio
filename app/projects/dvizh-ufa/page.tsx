@@ -5,6 +5,7 @@ import Slider from "@/app/components/Slider";
 import { useState } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/app/context/LanguageContext";
+import LanguageSwitch from "@/app/components/LanguageSwitch";
 
 const desktopPhotos = [
   { src: "/projects/dvizh-ufa/desktop-1.jpg", alt: "Desktop 1" },
@@ -106,26 +107,23 @@ export default function ProjectPage() {
 />
 
   {/* Кнопка назад */}
-  <div className="max-w-5xl mx-auto mb-0">
-<Link
-  href="/"
-  className="
-    block
-    max-w-5xl mx-auto
-    pt-6        /* кликабельное сверху */
-    mb-6        /* расстояние до контейнера */
-    px-4
-    text-sm text-neutral-400
-    hover:text-neutral-200
-    transition
-  "
->
-  <span className="block px-4 items-center gap-2">
-    <span className="text-lg">← </span>
-    {text.back}
-  </span>
-</Link>
-  </div>
+<div className="max-w-5xl mx-auto pt-6 mb-6 px-4 flex items-center justify-between">
+  <Link
+    href="/"
+    className="
+      text-sm text-neutral-400
+      hover:text-neutral-200
+      transition
+    "
+  >
+    <span className="inline-flex items-center gap-2">
+      <span className="text-lg">←</span>
+      {text.back}
+    </span>
+  </Link>
+
+  <LanguageSwitch />
+</div>
 
   <div className="relative z-20 max-w-5xl mx-auto rounded-2xl bg-neutral-800/60 p-5 sm:p-8 lg:p-10 space-y-6 lg:space-y-6">
 

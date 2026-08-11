@@ -7,7 +7,7 @@ export default function LanguageSwitch() {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="fixed top-5 right-5 z-50">
+    <div className="shrink-0">
       <div className="relative flex items-center w-[118px] h-[44px] rounded-full bg-neutral-800/80 border border-neutral-700 backdrop-blur-md p-1 shadow-lg">
 
         <motion.div

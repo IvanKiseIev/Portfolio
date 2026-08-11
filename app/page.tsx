@@ -11,6 +11,7 @@ type Project = {
 import { useLanguage } from "@/app/context/LanguageContext";
 import Link from "next/link";
 import ProjectCard from "@/app/components/ProjectCard";
+import LanguageSwitch from "@/app/components/LanguageSwitch";
 
 const projectsByLanguage: Record<"en" | "ru", Project[]> = {
   en: [
@@ -104,8 +105,13 @@ export default function Home() {
   const projects = projectsByLanguage[language];
 
   return (
-    <main className="min-h-screen px-4 py-12">
-      <div className="max-w-3xl mx-auto rounded-2xl bg-neutral-800/60 p-6 sm:p-8">
+<main className="min-h-screen px-4 py-12">
+
+  <div className="max-w-3xl mx-auto mb-4 flex justify-end">
+    <LanguageSwitch />
+  </div>
+
+  <div className="max-w-3xl mx-auto rounded-2xl bg-neutral-800/60 p-6 sm:p-8">
       <section className="mb-10">
 <h1 className="text-3xl font-semibold mb-2">
   {text.title}
